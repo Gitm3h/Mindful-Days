@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Days - Daily Journal & Social Battery</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background elements for visual premium depth -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <div class="app-container">
+        <!-- Sidebar or Header Navigation -->
+        <header class="app-header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 3a6 6 0 0 0-9 9 9 9 0 1 0 18 0 6 6 0 0 0-9-9Z" />
+                    <path d="M12 3v18" />
+                    <path d="M3 12h18" />
+                    <path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
+                </svg>
+                <h1>Mindful Days</h1>
+            </div>
+            <nav class="app-nav">
+                <button id="nav-journal" class="nav-btn active" onclick="switchTab('journal')">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 20h9" />
+                        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                    </svg>
+                    <span>Mindful Journal</span>
+                </button>
+                <button id="nav-battery" class="nav-btn" onclick="switchTab('battery')">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="7" width="16" height="10" rx="2" ry="2" />
+                        <line x1="22" y1="11" x2="22" y2="13" />
+                    </svg>
+                    <span>Social Battery</span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="app-main">
+            <!-- TAB 1: MINDFUL JOURNAL -->
+            <section id="tab-journal-content" class="tab-content active">
+                
+                <!-- Expandable Calendar Widget -->
+                <div class="calendar-card glass">
+                    <div class="calendar-header-bar">
+                        <div class="current-date-display">
+                            <button id="prev-day-btn" class="icon-btn-nav" title="Previous Day">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+                            <div class="date-text-wrapper">
+                                <h2 id="current-date-title">Loading Date...</h2>
+                                <span id="date-subtitle">Today</span>
+                            </div>
+                            <button id="next-day-btn" class="icon-btn-nav" title="Next Day">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                        </div>
+                        <div class="calendar-controls">
+                            <button id="today-btn" class="btn-secondary">Today</button>
+                            <button id="expand-calendar-btn" class="btn-primary">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                    <line x1="16" y1="2" x2="16" y2="6" />
+                                    <line x1="8" y1="2" x2="8" y2="6" />
+                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                </svg>
+                                <span id="expand-btn-text">Expand Calendar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Expandable Calendar Drawer -->
+                    <div id="calendar-drawer" class="calendar-drawer collapsed">
+                        <div class="drawer-divider"></div>
+                        <div class="calendar-view-toggle">
+                            <button id="view-week-btn" class="toggle-btn active">Week View</button>
+                            <button id="view-month-btn" class="toggle-btn">Month View</button>
+                        </div>
+                        
+                        <!-- Grid Container for Calendar Views -->
+                        <div id="calendar-grid-container" class="calendar-grid-container week-mode">
+                            <!-- Dynamically generated elements will go here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wise Quote Card -->
+                <div class="quote-card glass animate-fade-in">
+                    <div class="quote-icon-bg">“</div>
+                    <div class="quote-content-wrapper">
+                        <p id="quote-text" class="quote-text">"Yesterday is history, tomorrow is a mystery, but today is a gift. That is why it is called the present."</p>
+                        <cite id="quote-author" class="quote-author">— Master Oogway</cite>
+                    </div>
+                </div>
+
+                <!-- Thoughts and Feelings Sky Box -->
+                <div class="sky-box glass">
+                    <div class="sky-box-header">
+                        <div class="sky-title-group">
+                            <svg class="cloud-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17.5 19A3.5 3.5 0 0 0 21 15.5c0-2.79-2.54-4.5-5-4.5-.47 0-.89.09-1.28.27A6.5 6.5 0 0 0 2 12.5C2 16.09 4.91 19 8.5 19H17.5Z" />
+                            </svg>
+                            <h3>Thoughts & Feelings</h3>
+                        </div>
+                        <span class="sky-quote">"Think of yourself as the sky, your thoughts as the clouds"</span>
+                    </div>
+                    <div class="sky-box-body">
+                        <textarea id="thoughts-input" placeholder="How is the weather in your mind today? Write your feelings, cloud-like thoughts, or mental states here..." maxlength="5000"></textarea>
+                        <div class="textarea-footer">
+                            <span id="char-counter">0 / 5000</span>
+                            <span id="save-status">Auto-saved locally</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Lists Container (Grid layout) -->
+                <div class="lists-grid">
+                    <!-- CARD 1: GRATITUDE -->
+                    <div class="list-card glass" id="card-gratitude">
+                        <div class="list-card-header">
+                            <div class="header-icon gratitude-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                            </div>
+                            <div class="header-text">
+                                <h4>Gratitude</h4>
+                                <span class="list-count" id="count-gratitude">0 / 5</span>
+                            </div>
+                        </div>
+                        <p class="list-desc">5 things you are grateful for today</p>
+                        
+                        <ul class="mindful-list" id="list-gratitude-items">
+                            <!-- Items will be generated here -->
+                        </ul>
+
+                        <form id="form-gratitude" class="list-input-form">
+                            <input type="text" id="input-gratitude" placeholder="I am grateful for..." maxlength="100" required>
+                            <button type="submit" class="add-btn" title="Add Item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                        </form>
+                        <div class="list-limit-reached-msg">Daily limit of 5 items reached</div>
+                    </div>
+
+                    <!-- CARD 2: THINGS TO CHANGE -->
+                    <div class="list-card glass" id="card-change">
+                        <div class="list-card-header">
+                            <div class="header-icon change-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                                </svg>
+                            </div>
+                            <div class="header-text">
+                                <h4>Areas of Change</h4>
+                                <span class="list-count" id="count-change">0 / 5</span>
+                            </div>
+                        </div>
+                        <p class="list-desc">5 things you would like to change</p>
+                        
+                        <ul class="mindful-list" id="list-change-items">
+                            <!-- Items will be generated here -->
+                        </ul>
+
+                        <form id="form-change" class="list-input-form">
+                            <input type="text" id="input-change" placeholder="I want to change/improve..." maxlength="100" required>
+                            <button type="submit" class="add-btn" title="Add Item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                        </form>
+                        <div class="list-limit-reached-msg">Daily limit of 5 items reached</div>
+                    </div>
+
+                    <!-- CARD 3: TASKS TO COMPLETE -->
+                    <div class="list-card glass" id="card-tasks">
+                        <div class="list-card-header">
+                            <div class="header-icon tasks-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="9 11 12 14 22 4" />
+                                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                                </svg>
+                            </div>
+                            <div class="header-text">
+                                <h4>Daily Tasks</h4>
+                                <span class="list-count" id="count-tasks">0 / 5</span>
+                            </div>
+                        </div>
+                        <p class="list-desc">5 tasks you would like to complete today</p>
+                        
+                        <ul class="mindful-list" id="list-tasks-items">
+                            <!-- Items will be generated here -->
+                        </ul>
+
+                        <form id="form-tasks" class="list-input-form">
+                            <input type="text" id="input-tasks" placeholder="Task to complete..." maxlength="100" required>
+                            <button type="submit" class="add-btn" title="Add Item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                        </form>
+                        <div class="list-limit-reached-msg">Daily limit of 5 items reached</div>
+                    </div>
+
+                    <!-- CARD 4: DAILY HABIT TRACKER -->
+                    <div class="list-card glass" id="card-tracker">
+                        <div class="list-card-header">
+                            <div class="header-icon tracker-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="6" />
+                                    <circle cx="12" cy="12" r="2" />
+                                </svg>
+                            </div>
+                            <div class="header-text">
+                                <h4>Daily Tracker</h4>
+                                <span class="list-count" id="count-tracker">0 / 5</span>
+                            </div>
+                        </div>
+                        <p class="list-desc">Track 5 habits or actions today (Did / Did Not)</p>
+                        
+                        <ul class="mindful-list" id="list-tracker-items">
+                            <!-- Items will be generated here -->
+                        </ul>
+
+                        <form id="form-tracker" class="list-input-form">
+                            <input type="text" id="input-tracker" placeholder="Habit or action to track..." maxlength="100" required>
+                            <button type="submit" class="add-btn" title="Add Item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                        </form>
+                        <div class="list-limit-reached-msg">Daily limit of 5 items reached</div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- TAB 2: SOCIAL BATTERY -->
+            <section id="tab-battery-content" class="tab-content">
+                <div class="battery-outer-grid">
+                    <!-- Left: Large Battery Display -->
+                    <div class="battery-main-card glass">
+                        <h3>Social Battery Calculator</h3>
+                        <p class="card-subtitle">Track your energy level throughout the day as activities recharge or deplete you.</p>
+                        
+                        <!-- Premium Interactive Battery Graphic -->
+                        <div class="battery-visual-container">
+                            <div class="battery-shell">
+                                <div class="battery-cap"></div>
+                                <div class="battery-body">
+                                    <div id="battery-fill" class="battery-fill" style="width: 50%;">
+                                        <div class="battery-bubbles"></div>
+                                    </div>
+                                    <span id="battery-percentage" class="battery-percentage-text">50%</span>
+                                </div>
+                            </div>
+                            <!-- Status Indicator -->
+                            <div class="battery-status-tag" id="battery-status-tag">Ambient Energy</div>
+                        </div>
+
+                        <!-- Starting Energy Level Selector -->
+                        <div class="battery-base-control">
+                            <label for="battery-base-slider">Wake-Up / Base Energy Level:</label>
+                            <div class="slider-wrapper">
+                                <input type="range" id="battery-base-slider" min="0" max="100" value="50" step="5">
+                                <span id="battery-base-value">50%</span>
+                            </div>
+                            <span class="control-note">Adjusts the initial charge you woke up with today.</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Top: Log Activities -->
+                    <div class="battery-log-card glass">
+                        <h3>Daily Activity Energy Logs</h3>
+                        <p class="card-subtitle">Select activities you did today to update your battery level.</p>
+                        
+                        <div class="activity-quick-actions">
+                            <div class="action-column">
+                                <h4 class="energy-title charge"><span class="bullet">+</span> Chargers</h4>
+                                <div class="activities-flex" id="chargers-preset-list">
+                                    <!-- Dynamic chargers here -->
+                                </div>
+                            </div>
+                            <div class="action-column">
+                                <h4 class="energy-title drain"><span class="bullet">-</span> Drainers</h4>
+                                <div class="activities-flex" id="drainers-preset-list">
+                                    <!-- Dynamic drainers here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Activity Form -->
+                        <form id="custom-activity-form" class="custom-activity-form">
+                            <h4>Add Custom Activity</h4>
+                            <div class="custom-form-inputs">
+                                <input type="text" id="custom-activity-name" placeholder="E.g., Meditation, Family dinner..." required maxlength="40">
+                                <div class="select-wrapper">
+                                    <select id="custom-activity-value" required>
+                                        <option value="" disabled selected>Energy Effect</option>
+                                        <option value="40">Recharges a lot (+40%)</option>
+                                        <option value="25">Recharges (+25%)</option>
+                                        <option value="15">Recharges a bit (+15%)</option>
+                                        <option value="5">Slight boost (+5%)</option>
+                                        <option value="-5">Slight drain (-5%)</option>
+                                        <option value="-15">Drains a bit (-15%)</option>
+                                        <option value="-25">Drains (-25%)</option>
+                                        <option value="-40">Drains a lot (-40%)</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn-primary-small">Create & Log</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Bottom: Current Day Event Log -->
+                    <div class="battery-history-card glass">
+                        <div class="history-header">
+                            <h3>Energy Log Events</h3>
+                            <button id="clear-battery-logs-btn" class="btn-clear-logs">Clear All Logs</button>
+                        </div>
+                        <ul class="activity-log-list" id="activity-log-items">
+                            <!-- Items logged for the day -->
+                            <li class="log-empty-msg">No activities logged for this day yet. Click options above to log energy updates.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Inline Editor Modal -->
+    <div id="edit-modal" class="modal-overlay">
+        <div class="modal-content glass">
+            <h3>Edit List Item</h3>
+            <textarea id="modal-edit-textarea" rows="3" maxlength="100"></textarea>
+            <div class="modal-actions">
+                <button id="modal-cancel-btn" class="btn-secondary">Cancel</button>
+                <button id="modal-save-btn" class="btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Nature Soundscape Panel -->
+    <div id="soundscape-panel" class="soundscape-panel glass closed">
+        <div class="soundscape-header" id="soundscape-header">
+            <button id="soundscape-play-btn" class="soundscape-main-btn" title="Toggle Soundscape">
+                <svg id="soundscape-play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+                <svg id="soundscape-mute-icon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                </svg>
+            </button>
+            <div class="soundscape-title">
+                <span>Nature Soundscape</span>
+                <span id="soundscape-status" class="status-off">Stopped</span>
+            </div>
+            <button id="soundscape-expand-btn" class="soundscape-expand-btn" title="Toggle Mixer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+        </div>
+        <div class="soundscape-body">
+            <div class="mixer-channel">
+                <div class="channel-info">
+                    <span class="channel-label">🌧️ Rain Volume</span>
+                    <span id="vol-txt-rain" class="vol-txt">50%</span>
+                </div>
+                <input type="range" id="volume-rain" min="0" max="100" value="50">
+            </div>
+            <div class="mixer-channel">
+                <div class="channel-info">
+                    <span class="channel-label">💨 Wind Volume</span>
+                    <span id="vol-txt-wind" class="vol-txt">30%</span>
+                </div>
+                <input type="range" id="volume-wind" min="0" max="100" value="30">
+            </div>
+            <div class="mixer-channel">
+                <div class="channel-info">
+                    <span class="channel-label">🐦 Birds Volume</span>
+                    <span id="vol-txt-birds" class="vol-txt">40%</span>
+                </div>
+                <input type="range" id="volume-birds" min="0" max="100" value="40">
+            </div>
+            <div class="mixer-channel">
+                <div class="channel-info">
+                    <span class="channel-label">🔥 Campfire Volume</span>
+                    <span id="vol-txt-campfire" class="vol-txt">50%</span>
+                </div>
+                <input type="range" id="volume-campfire" min="0" max="100" value="50">
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio elements for Nature Soundscape (High-Compatibility MP3 Loops) -->
+    <audio id="audio-rain" src="https://cdn.jsdelivr.net/gh/karthiknvd/noctune@main/sounds/rain.mp3" loop></audio>
+    <audio id="audio-wind" src="https://cdn.jsdelivr.net/gh/karthiknvd/noctune@main/sounds/wind.mp3" loop></audio>
+    <audio id="audio-birds" src="https://cdn.jsdelivr.net/gh/karthiknvd/noctune@main/sounds/forest.mp3" loop></audio>
+    <audio id="audio-campfire" src="https://cdn.jsdelivr.net/gh/karthiknvd/noctune@main/sounds/campfire.mp3" loop></audio>
+
+    <!-- JavaScript App Entry -->
+    <script src="app.js"></script>
+</body>
+</html>
