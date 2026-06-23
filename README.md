@@ -8,11 +8,11 @@ style.css: Defines a premium dark glassmorphic design system using CSS custom pr
 Core Features Implemented
 
 1. Mindful Journal Tab
-Expandable Calendar Widget: Displays week/month mode with indicator dots representing days containing logs.
+. Expandable Calendar Widget: Displays week/month mode with indicator dots representing days containing logs.
 Daily Quote: Displays a deterministic daily quote from a preset pool of 52 quotes.
 Thoughts & Feelings Sky Box: A auto-saved text box (capped at 5,000 characters) for recording mental states.
 
-Interactive Lists (5 items limit each):
+. Interactive Lists (5 items limit each):
 Gratitude: For recording appreciation.
 Areas of Change: For recording things to improve.
 Daily Tasks: Checklist with item cross-out and check states.
