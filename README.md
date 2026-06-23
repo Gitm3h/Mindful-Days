@@ -4,6 +4,7 @@ Project Files:
 2. app.js: Handles state management (loading/saving from localStorage by date key), event binding, quotes rotation, list mutation, social battery percentage calculations, and soundscape volume mixers.
 3. style.css: Defines a premium dark glassmorphic design system using CSS custom properties (variables), custom scrollbars, keyframe animations, responsive grid layouts, and active states.
 
+
 Core Features Implemented
 
 1. Mindful Journal Tab
